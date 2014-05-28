@@ -136,6 +136,12 @@ get "/game" do
   session[:dealer_cards] << session[:deck].pop
   session[:player_cards] << session[:deck].pop
 
+  player_total = calculate_total(session[:player_cards])
+  if player_total == BLACKJACK_AMOUNT
+    winner!("You got BLACKJACK!!")
+    @show_hit_or_stay = false
+    @play_again = true
+  end
 
   erb :game
 end

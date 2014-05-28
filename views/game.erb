@@ -1,12 +1,14 @@
 
 <div id="game">
 
-  <%if @loser %>
+  <div class="container">
+    <%if @loser %>
       <div class="alert alert-error"><%=@loser%></div>
     <% end %>
     <%if @winner %>
       <div class="alert alert-success"><%=@winner%></div>
     <% end %>
+  </div>
 
   <%if @play_again%>
       <%="Would you like to play again, " + session[:new_user] + "?" %>

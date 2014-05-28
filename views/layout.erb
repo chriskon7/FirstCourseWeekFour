@@ -20,11 +20,11 @@
     </div>
 
   <div class="container">
-    <%if @error %>
-      <div class="alert alert-error"><%=@error%></div>
+    <%if @loser%>
+      <div class="alert alert-error"><%=@loser%></div>
     <% end %>
-    <%if @success %>
-      <div class="alert alert-success"><%=@success%></div>
+    <%if @swinner %>
+      <div class="alert alert-success"><%=@winner%></div>
     <% end %>
 
       <%= yield %>
