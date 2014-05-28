@@ -1,0 +1,12 @@
+<form action="/betting" method="post">
+  <fieldset>
+    <legend>Welcome to Chris Koning's Tealeaf Blackjack Game!!!</legend>
+    <h3>Make a bet for this round-</h3>
+    <%= session[:new_user] %> has $<%= session[:money].to_i %>
+    <br>
+    <label>Enter Your Bet:</label>
+    <input type="text" placeholder="Please enter your bet…" name="betting" autofocus>
+    <br>
+    <button type="submit" class="btn">Make Bet</button>
+  </fieldset>
+</form>

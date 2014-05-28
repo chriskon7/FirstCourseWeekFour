@@ -1,0 +1,21 @@
+form#hit {
+  margin-right: 10px;
+  float: left;
+}
+
+form#stay {
+  float: left;
+}
+
+form#yes {
+  margin-right: 10px;
+  float: left;
+}
+
+form#no {
+  float: left;
+}
+
+.card_image {
+  margin: 0px 10px 5px 10px;
+}

@@ -1,0 +1,77 @@
+
+<div id="game">
+
+  <%if @loser %>
+      <div class="alert alert-error"><%=@loser%></div>
+    <% end %>
+    <%if @winner %>
+      <div class="alert alert-success"><%=@winner%></div>
+    <% end %>
+
+  <%if @play_again%>
+      <%="Would you like to play again, " + session[:new_user] + "?" %>
+      <br>
+      <form id="yes" action="/game/play_again/yes" method="post">
+        <button type="submit" class="btn btn-success">Yes</button>
+      </form>
+  
+      <form id="no" action="/game/play_again/no" method="post">
+        <button type="submit" class="btn btn-danger">No</button>
+      </form>
+    
+  <%end%>
+  
+  <br>
+  <br>
+  
+  <h1>Blackjack</h1>
+  
+  <p><%= "Welcome to the game, " + session[:new_user] + "!" %></p>
+  <div class="well">
+    <h4>Dealer's cards:</h4>
+        <% session[:dealer_cards].each_with_index do |card, i| %>
+          <% if session[:turn] != "dealer" && i == 0 %>
+            <img src="/images/cards/cover.jpg"/>
+          <% else %>
+            <%= card_image(card) %>
+          <% end %>
+        <% end %>
+    <% if @dealers_turn %>
+      <h3>Now it's my turn:</h3>
+      <form id="dealers_turn" action="/game/dealer_hit" method="post">
+      <button type="submit" class="btn btn-inverse">Click here to reveal my next card</button>
+    </form>
+    <%end%>  
+  
+  </div>
+  <% if session[:turn] == "dealer" %>
+    <%= "Dealer's total= " + calculate_total(session[:dealer_cards]).to_s %>
+  <% end %>
+  
+  <br>
+  <br>
+  
+  <div class="well" id="player_cards">
+    <h4>Player's cards:</h4>
+        <% session[:player_cards].each do |card| %>
+          <%= card_image(card) %>
+        <% end %>
+    <h5> <%= session[:new_user] %> has $<%= session[:money] %> and bet $<%= session[:player_bet] %> </h5>
+  </div>
+  
+  <%= session[:new_user] + "'s total= " + calculate_total(session[:player_cards]).to_s %>
+  <br>
+  <br>
+  <% if @show_hit_or_stay %>
+    <%= session[:new_user] + ", what would you like to do?"%>
+    <br>
+    <form id="hit" action="/game/player/hit" method="post">
+      <button type="submit" class="btn btn-success">Hit</button>
+    </form>
+    <form id="stay" action="/game/player/stay" method="post">
+      <button type="submit" class="btn btn-danger">Stay</button>
+    </form>
+  <% end %>
+
+
+</div>
